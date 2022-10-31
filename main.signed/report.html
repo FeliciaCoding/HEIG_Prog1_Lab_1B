@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="Submission" content="1QPHZGJJQ6IO1ZY5OSXZHU6U7"/>
+<meta name="Time" content="2022-10-06T09:18:04Z"/>
+<meta name="ID" content="main"/>
+<meta name="User" content="omyj-cowu-qiry-axem"/>
+<meta name="Problem" content="ext/2208241117bz7vohg83rt7l25lwc3lopcl2"/>
+<meta name="Elapsed" content="2890 ms"/>
+<style type="text/css">
+.header {font-weight: bold; font-size: 1.2em; }
+.item {font-weight: bold;}
+.pass {color: green;}
+.fail {color: red;}
+.note {color: blue; font-weight: bold;}
+table.file td {padding-right: 1em; background: #FFF; }
+.linenumber {color: gray;}
+.footnote {font-size: 0.7em;}
+table {font-size: 0.9em;}
+td, th { background: #EEE; margin: 0.5em; padding: 0.25em;}
+table.output td {vertical-align: top;}
+div.footnotes { border-top: 1px solid gray; padding-top: 0.5em; }
+</style>
+<title>Report</title>
+</head>
+<body>
+<p class="header run">Testing main.cpp</p>
+<div class="run">
+<p class="item">Test 1</p>
+<pre class="output">Quel est votre numéro de compte ?
+<b>1256845</b>
+Quel est votre nom de famille ?
+<b>USER1</b>
+Solde de votre compte CHF : 1000.00
+Taux de change : 1 CHF = 1.024 Euro
+Frais d’opération : 5.00 CHF
+Entrez la somme souhaitée en Euro :
+<b>125</b>
+
++----------------------------+
+|                            |
+| USER1                      |
+| 1256845                    |
+|                            |
+| Somme Euro       :  125.00 |
+| 1 CHF en Euro    :   1.024 |
+|                            |
+| Somme CHF        :  122.07 |
+| Frais            :    5.00 |
+|                            |
+| Solde Compte     :  872.93 |
+|                            |
++----------------------------+
+</pre>
+<span class="pass">pass </span><p class="item">Test 2</p>
+<pre class="output">Quel est votre numéro de compte ?
+<b>125698</b>
+Quel est votre nom de famille ?
+<b>USERNOM2</b>
+Solde de votre compte CHF : 1000.00
+Taux de change : 1 CHF = 1.024 Euro
+Frais d’opération : 5.00 CHF
+Entrez la somme souhaitée en Euro :
+<b>33.56</b>
+
++----------------------------+
+|                            |
+| USERNOM2                   |
+| 125698                     |
+|                            |
+| Somme Euro       :   33.56 |
+| 1 CHF en Euro    :   1.024 |
+|                            |
+| Somme CHF        :   32.77 |
+| Frais            :    5.00 |
+|                            |
+| Solde Compte     :  962.23 |
+|                            |
++----------------------------+
+</pre>
+<span class="pass">pass </span><p class="item">Test 3</p>
+<pre class="output">Quel est votre numéro de compte ?
+<b>99885544</b>
+Quel est votre nom de famille ?
+<b>MonNomDeFamille</b>
+Solde de votre compte CHF : 1000.00
+Taux de change : 1 CHF = 1.024 Euro
+Frais d’opération : 5.00 CHF
+Entrez la somme souhaitée en Euro :
+<b>850</b>
+
++----------------------------+
+|                            |
+| MonNomDeFamille            |
+| 99885544                   |
+|                            |
+| Somme Euro       :  850.00 |
+| 1 CHF en Euro    :   1.024 |
+|                            |
+| Somme CHF        :  830.08 |
+| Frais            :    5.00 |
+|                            |
+| Solde Compte     :  164.92 |
+|                            |
++----------------------------+
+</pre>
+<span class="pass">pass </span></div>
+<p class="header studentFiles">Submitted files</p>
+<div class="studentFiles">
+<p class="caption">main.cpp:</p>
+<pre class="output">/* ---------------------------
+Laboratory:         Labo 01B – Bureau de change
+Author(s):          Dominik SAUL, Pei-Wen LIAO, Richard SIERRA
+Version:            1.0
+Date:               06.10.2022
+Description:        Program to simulate an ATM that calculates the currency change (Euro to CHF) and the handling fees of a debit.
+                    In the end the ATM prints a virtual ticket.
+Modification(s):
+--------------------------- */
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main() {
+    // Declare and initialize the constants
+    const double HANDLING_FEE      = 5.;
+    const double EXCHANGE_RATE     = 1.024;
+    const int    PRECISION_MONEY   = 2;
+    const int    PRECISION_EX_RATE = 3;
+
+    // Constants to format the ticket output
+    const int WIDTH_LEFT  = 17;
+    const int WIDTH_RIGHT = 8;
+    const int WIDTH_FULL  = WIDTH_LEFT + WIDTH_RIGHT + 3;
+
+    // User inputs
+    int accountNr = 0;
+    cout &lt;&lt; "Quel est votre numéro de compte ?" &lt;&lt; endl;
+    cin &gt;&gt; accountNr;
+
+    string userName = "";
+    cout &lt;&lt; "Quel est votre nom de famille ?" &lt;&lt; endl;
+    cin &gt;&gt; userName;
+
+    // Output account info
+    double accountBalance = 1000;
+    cout &lt;&lt; fixed;
+    cout &lt;&lt; "Solde de votre compte CHF : " &lt;&lt; setprecision(PRECISION_MONEY) &lt;&lt; accountBalance &lt;&lt; endl;
+    cout &lt;&lt; "Taux de change : 1 CHF = " &lt;&lt; setprecision(PRECISION_EX_RATE) &lt;&lt; EXCHANGE_RATE &lt;&lt; " Euro" &lt;&lt; endl;
+    cout &lt;&lt; "Frais d’opération : " &lt;&lt; setprecision(PRECISION_MONEY) &lt;&lt; HANDLING_FEE &lt;&lt; " CHF" &lt;&lt; endl;
+
+    // User input of the amount to withdraw
+    double withdrawAmountEUR = 0.;
+    cout &lt;&lt; "Entrez la somme souhaitée en Euro :" &lt;&lt; endl;
+    cin &gt;&gt; withdrawAmountEUR;
+
+    double withdrawAmountCHF = 0.;
+    withdrawAmountCHF = withdrawAmountEUR / EXCHANGE_RATE;
+    accountBalance -= (withdrawAmountCHF + HANDLING_FEE);
+
+    // Output Ticket
+    cout &lt;&lt; fixed &lt;&lt; setprecision(PRECISION_MONEY) &lt;&lt; endl;
+    cout &lt;&lt; "+" &lt;&lt; setfill('-') &lt;&lt; setw(WIDTH_FULL + 1) &lt;&lt; right &lt;&lt; "+" &lt;&lt; endl;
+    cout &lt;&lt; setfill(' ');
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL) &lt;&lt; right &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL - 1) &lt;&lt; left &lt;&lt; userName &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL - 1) &lt;&lt; left &lt;&lt; accountNr &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL) &lt;&lt; right &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_LEFT) &lt;&lt; left &lt;&lt; "Somme Euro" &lt;&lt; ":" &lt;&lt; setw(WIDTH_RIGHT) &lt;&lt; right &lt;&lt; withdrawAmountEUR
+         &lt;&lt; " |"
+         &lt;&lt; endl;
+    cout &lt;&lt; setprecision(PRECISION_EX_RATE);
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_LEFT) &lt;&lt; left &lt;&lt; "1 CHF en Euro" &lt;&lt; ":" &lt;&lt; setw(WIDTH_RIGHT) &lt;&lt; right &lt;&lt; EXCHANGE_RATE
+         &lt;&lt; " |"
+         &lt;&lt; endl;
+    cout &lt;&lt; setprecision(PRECISION_MONEY);
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL) &lt;&lt; right &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_LEFT) &lt;&lt; left &lt;&lt; "Somme CHF" &lt;&lt; ":" &lt;&lt; setw(WIDTH_RIGHT) &lt;&lt; right &lt;&lt; withdrawAmountCHF
+         &lt;&lt; " |"
+         &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_LEFT) &lt;&lt; left &lt;&lt; "Frais" &lt;&lt; ":" &lt;&lt; setw(WIDTH_RIGHT) &lt;&lt; right &lt;&lt; HANDLING_FEE &lt;&lt; " |"
+         &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL) &lt;&lt; right &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_LEFT) &lt;&lt; left &lt;&lt; "Solde Compte" &lt;&lt; ":" &lt;&lt; setw(WIDTH_RIGHT) &lt;&lt; right &lt;&lt; accountBalance
+         &lt;&lt; " |"
+         &lt;&lt; endl;
+    cout &lt;&lt; "| " &lt;&lt; setw(WIDTH_FULL) &lt;&lt; right &lt;&lt; "|" &lt;&lt; endl;
+    cout &lt;&lt; "+" &lt;&lt; setfill('-') &lt;&lt; setw(WIDTH_FULL + 1) &lt;&lt; right &lt;&lt; "+" &lt;&lt; endl;
+
+    return 0;
+}
+</pre>
+</div>
+<p class="header score">Score</p>
+<div class="score">
+<p class="score">3/3</p>
+</div>
+<div class="footnotes"><div class="footnote">2022-10-06T09:18:04Z</div>
+</div>
+</body></html>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: 11.0.11 (Oracle Corporation)
+
+Name: main.cpp
+SHA-256-Digest: VgXZ+dJ+U1T1YuP1n7/6bI9x84eUx9Pag+Aj6WzZ7G4=
+
+Name: report.html
+SHA-256-Digest: IRr9W2EZMacAx4rXLOylOw4vVbGly4irOItDAPbavEQ=
+
